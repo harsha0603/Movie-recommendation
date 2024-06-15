@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Movies List</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ff6347;
+        }
+        p {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        label, select {
+            color: #ffffff;
+            font-size: 16px;
+        }
+        select {
+            background-color: #333333;
+            border: none;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            width: 75%;
+            height: 40px;
+        }
+        button {
+            background-color: #ff6347;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #333333;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        li:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+</head>
+<body>
+    <h1>List Of Movies</h1>
+    
+    <div class="container">
+        <div class="form-container">
+            <form action="/search" method="post">
+                <label for="movie">Choose a movie:</label>
+                <select name="movie" id="movie" class="searchable">
+                    {% for title in titles %}
+                        <option value="{{ title }}">{{ title }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Recommend</button>
+            </form>
+        </div>
+        
+        {% if recommended_movies %}
+            <h2>Movie Recommendations:</h2>
+            <ul>
+                {% for movie in recommended_movies %}
+                    <li>{{ movie }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.searchable').select2({
+                placeholder: 'Type to search...',
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>
