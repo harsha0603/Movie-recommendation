@@ -14,3 +14,5 @@ Technologies Used
 Python
 Pandas
 NLTK
+![image](https://github.com/harsha0603/Movie-recommendation/assets/118906342/41631fa3-25b3-40be-95b3-f5dca0f490e0)
+![image](https://github.com/harsha0603/Movie-recommendation/assets/118906342/27534430-52bb-4cbd-9082-67dedfd0d553)
